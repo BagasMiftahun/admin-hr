@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->id();
-            // $table->user_id();
-            // $table->attendance_id();
-            $table->string('name');
-            $table->string('description');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('fcm_token')->after('remember_token')->nullable();
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };
