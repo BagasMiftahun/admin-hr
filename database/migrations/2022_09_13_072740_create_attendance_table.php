@@ -21,7 +21,9 @@ return new class extends Migration
             $table->integer('employes_id');
             $table->string('image');
             $table->string('code');
+            $table->rememberToken();
             $table->timestamps('');
+
         });
     }
 

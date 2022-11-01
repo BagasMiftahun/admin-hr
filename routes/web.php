@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RekapController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AbsensiController;
 use LoginController;
@@ -18,6 +22,29 @@ use PostController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('index',[
+//         "title" => "Dashboard",
+//     ]);
+// });
+
+// Confirm Email
+Route::get('/confirm-email/{token}', [AuthController::class, 'confirm'])->name('confirm');
+
+// User Auth
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+
+Route::get('/rekap', [RekapController::class, 'index']);
+
+// Route::get('/generate-qrcode', [AttendanceController::class, 'index']);
+// Route::get('/scan', [AttendanceController::class, 'scan']);
+
+
+Route::get('/pdf', 'App\Http\Controllers\RekapController@pdf')->name('pdf');
+
+Route::get('/qrcodes', [AttendanceController::class, 'index']);
+// Route::post('/', [DataController::class, 'store'])->name('store');
+Route::get('qrcode/{id}', [DataController::class, 'generate'])->name('generate');
 
 Route::resource('/pekerjaans', \App\Http\Controllers\PekerjaanController::class)->middleware('auth');
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');

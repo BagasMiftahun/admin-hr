@@ -181,7 +181,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Laravel\Passport\PassportServiceProvider::class,
+        LaravelQRCode\Providers\QRCodeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -209,6 +210,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'QRCode' => LaravelQRCode\Facades\QRCode::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
